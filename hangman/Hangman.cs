@@ -23,9 +23,11 @@ public class Hangman
 
     public static string word;
     public static bool alreadyGuessed = false;
+    public static bool isMultiplayer;
+    public static bool wrongWord = true;
     public static string maskedWord;
     public static string guessedLetters = "";
-    public static string guess;
+    public static string inputChar;
     public static ConsoleKeyInfo pressedKey;
     public static int guesses = 0;
 
@@ -33,17 +35,71 @@ public class Hangman
     {
         Init();
         Game();
+        Console.WriteLine("[Press 'r' to restart or any other key to exit]");
+        inputChar = Console.ReadKey().KeyChar.ToString().ToLower();
+        if (inputChar == "r")
+        {
+            Main();
+        }
     }
 
     private static void Init()
     {
         Console.Clear();
         Console.WriteLine("Welcome to Hangman!");
-        Console.WriteLine("I'm thinking of a word. Can you guess it?");
-        Random random = new Random();
-        int randomIndex = random.Next(0, words.Length);
-        word = words[randomIndex];
-        maskedWord = new string('_', word.Length);
+        Console.WriteLine("Do you want to play multiplayer? (y/n)");
+        inputChar = Console.ReadKey().KeyChar.ToString().ToLower();
+        while (inputChar != "y" && inputChar != "n")
+        {
+            Console.WriteLine("Invalid input! Please enter 'y' or 'n'!");
+            inputChar = Console.ReadKey().KeyChar.ToString().ToLower();
+        }
+        if (inputChar == "y")
+        {
+            isMultiplayer = true;
+        }
+        if (isMultiplayer)
+        {
+            Console.Clear();
+            Console.WriteLine("Player 1, please enter a word for Player 2 to guess:");
+            word = Console.ReadLine().ToLower();
+            while (wrongWord)
+            {
+                for (int i = 0; i < word.Length; i++)
+                {
+                    inputChar = word[i].ToString().ToLower();
+                    if (inputChar == "a" || inputChar == "á" || inputChar == "b" || inputChar == "c" || inputChar == "d" || inputChar == "e" ||
+                        inputChar == "é" || inputChar == "f" || inputChar == "g" || inputChar == "h" || inputChar == "i" || inputChar == "í" ||
+                        inputChar == "j" || inputChar == "k" || inputChar == "l" || inputChar == "m" || inputChar == "n" || inputChar == "o" ||
+                        inputChar == "ó" || inputChar == "ö" || inputChar == "ő" || inputChar == "p" || inputChar == "q" || inputChar == "r" ||
+                        inputChar == "s" || inputChar == "t" || inputChar == "u" || inputChar == "ú" || inputChar == "ü" || inputChar == "ű" ||
+                        inputChar == "v" || inputChar == "w" || inputChar == "x" || inputChar == "y" || inputChar == "z")
+                    {
+                        wrongWord = false;
+                    }
+                    else
+                    {
+                        wrongWord = true;
+                    }
+                }
+                if (wrongWord)
+                {
+                    Console.WriteLine("Invalid word! Please enter a correct word!");
+                    word = Console.ReadLine().ToLower();
+                }
+            }
+            maskedWord = new string('_', word.Length);
+        }
+        else
+        {
+            Console.Clear();
+            Console.WriteLine("Than you play aganist the computer!");
+            Console.WriteLine("I'm thinking of a word. Can you guess it?");
+            Random random = new Random();
+            int randomIndex = random.Next(0, words.Length);
+            word = words[randomIndex];
+            maskedWord = new string('_', word.Length);
+        }
         Console.WriteLine("[Press any key to continue]");
         Console.ReadKey();
         Console.Clear();
@@ -58,34 +114,37 @@ public class Hangman
             WriteLetters();
         }
         RefreshScreen();
-        Console.WriteLine("[Press any key to exit]");
-        Console.ReadKey();
     }
 
     private static void inputkey()
     {
         Console.WriteLine("[Guess a letter]");
         pressedKey = Console.ReadKey();
-        guess = pressedKey.KeyChar.ToString().ToLower();
+        inputChar = pressedKey.KeyChar.ToString().ToLower();
     }
 
     private static void WriteLetters()
     {
-        if (guess != " " && guess != ConsoleKey.Enter.ToString())
+        if (inputChar == "a" || inputChar == "á" || inputChar == "b" || inputChar == "c" || inputChar == "d" || inputChar == "e" ||
+            inputChar == "é" || inputChar == "f" || inputChar == "g" || inputChar == "h" || inputChar == "i" || inputChar == "í" ||
+            inputChar == "j" || inputChar == "k" || inputChar == "l" || inputChar == "m" || inputChar == "n" || inputChar == "o" ||
+            inputChar == "ó" || inputChar == "ö" || inputChar == "ő" || inputChar == "p" || inputChar == "q" || inputChar == "r" ||
+            inputChar == "s" || inputChar == "t" || inputChar == "u" || inputChar == "ú" || inputChar == "ü" || inputChar == "ű" ||
+            inputChar == "v" || inputChar == "w" || inputChar == "x" || inputChar == "y" || inputChar == "z")
         {
-            if (word.Contains(guess))
+            if (word.Contains(inputChar))
             {
                 for (int i = 0; i < word.Length; i++)
                 {
-                    if (word[i].ToString()== guess)
+                    if (word[i].ToString()== inputChar)
                     {
-                        maskedWord = maskedWord.Remove(i, 1).Insert(i, guess);
+                        maskedWord = maskedWord.Remove(i, 1).Insert(i, inputChar);
                     }
                 }
             }
             else
             {
-                if (guessedLetters.Contains(guess))
+                if (guessedLetters.Contains(inputChar))
                 {
                     alreadyGuessed = true;
                 }
@@ -93,16 +152,15 @@ public class Hangman
                 {
                     if (guessedLetters.Length > 0)
                     {
-                        guessedLetters += ", " + guess;
+                        guessedLetters += ", " + inputChar;
                     }
                     else
                     {
-                        guessedLetters += guess;
+                        guessedLetters += inputChar;
                     }
                     guesses++;
                 }
-        }
-        
+            }
         }
     }
 
