@@ -37,6 +37,7 @@ public class Hangman
 
     private static void Init()
     {
+        Console.Clear();
         Console.WriteLine("Welcome to Hangman!");
         Console.WriteLine("I'm thinking of a word. Can you guess it?");
         Random random = new Random();
