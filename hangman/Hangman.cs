@@ -35,7 +35,12 @@ public class Hangman
     {
         Init();
         Game();
-        Console.WriteLine("[Press 'r' to restart or any other key to exit]");
+        inputChar = "";
+        while (inputChar != "r" && inputChar != ConsoleKey.Enter.ToString())
+        {
+            
+        }
+        Console.WriteLine("[Press 'r' to restart or any enter to exit]");
         inputChar = Console.ReadKey().KeyChar.ToString().ToLower();
         if (inputChar == "r")
         {
@@ -45,6 +50,9 @@ public class Hangman
 
     private static void Init()
     {
+        guessedLetters = "";
+        guesses = 0;
+        wrongWord = true;
         Console.Clear();
         Console.WriteLine("Welcome to Hangman!");
         Console.WriteLine("Do you want to play multiplayer? (y/n)");
@@ -80,6 +88,7 @@ public class Hangman
                     else
                     {
                         wrongWord = true;
+                        break;
                     }
                 }
                 if (wrongWord)
