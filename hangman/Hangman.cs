@@ -36,15 +36,19 @@ public class Hangman
         Init();
         Game();
         inputChar = "";
-        while (inputChar != "r" && inputChar != ConsoleKey.Enter.ToString())
+        // while the input is not 'r' or 'enter'
+        while (inputChar != "r" && inputChar != "x")
         {
-            
+            Console.WriteLine("[Press 'r' to restart or 'x' to exit]");
+            inputChar = Console.ReadKey().KeyChar.ToString();
         }
-        Console.WriteLine("[Press 'r' to restart or any enter to exit]");
-        inputChar = Console.ReadKey().KeyChar.ToString().ToLower();
         if (inputChar == "r")
         {
             Main();
+        }
+        if (inputChar == ConsoleKey.Enter.ToString())
+        {
+            Environment.Exit(0);
         }
     }
 
