@@ -178,11 +178,11 @@ public class Hangman
 
     private static void RefreshScreen()
     {
-        if (Console.WindowHeight < 20 || Console.WindowWidth < 40)
+        if (Console.WindowHeight < 15 || Console.WindowWidth < 40)
         {
             Console.Clear();
-            Console.WriteLine("Please resize the window to at least 20 rows and 40 columns!");
-            while (Console.WindowHeight < 20 || Console.WindowWidth < 40)
+            Console.WriteLine("Please resize the window to at least 15 rows and 40 columns!");
+            while (Console.WindowHeight < 15 || Console.WindowWidth < 40)
             {
                 
             }
