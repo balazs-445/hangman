@@ -1,0 +1,15 @@
+/home/fulop/RiderProjects/Solution1/hangman/obj/Debug/net8.0/hangman.GeneratedMSBuildEditorConfig.editorconfig
+/home/fulop/RiderProjects/Solution1/hangman/obj/Debug/net8.0/hangman.AssemblyInfoInputs.cache
+/home/fulop/RiderProjects/Solution1/hangman/obj/Debug/net8.0/hangman.AssemblyInfo.cs
+/home/fulop/RiderProjects/Solution1/hangman/obj/Debug/net8.0/hangman.csproj.CoreCompileInputs.cache
+/home/fulop/RiderProjects/Solution1/hangman/obj/Debug/net8.0/hangman.sourcelink.json
+/home/fulop/RiderProjects/Solution1/hangman/bin/Debug/net8.0/hangman
+/home/fulop/RiderProjects/Solution1/hangman/bin/Debug/net8.0/hangman.deps.json
+/home/fulop/RiderProjects/Solution1/hangman/bin/Debug/net8.0/hangman.runtimeconfig.json
+/home/fulop/RiderProjects/Solution1/hangman/bin/Debug/net8.0/hangman.dll
+/home/fulop/RiderProjects/Solution1/hangman/bin/Debug/net8.0/hangman.pdb
+/home/fulop/RiderProjects/Solution1/hangman/obj/Debug/net8.0/hangman.dll
+/home/fulop/RiderProjects/Solution1/hangman/obj/Debug/net8.0/refint/hangman.dll
+/home/fulop/RiderProjects/Solution1/hangman/obj/Debug/net8.0/hangman.pdb
+/home/fulop/RiderProjects/Solution1/hangman/obj/Debug/net8.0/hangman.genruntimeconfig.cache
+/home/fulop/RiderProjects/Solution1/hangman/obj/Debug/net8.0/ref/hangman.dll
