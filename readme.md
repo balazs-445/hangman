@@ -2,4 +2,4 @@
 
 A hagman game in c#.
 
-Also check out [dani](https://github.com/gondorgitaros)'s [hangman game](https://github.com/gondorgitaros/hangman)!
+Also check out [dani](https://github.com/gondorgitaros)'s [hangman game](https://github.com/gondorgitaros/hangman) (in [python](https://python.org))!
