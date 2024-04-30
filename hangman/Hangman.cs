@@ -29,8 +29,7 @@ public class Hangman
     public static string guessedLetters = "";
     public static string inputChar;
     public static ConsoleKeyInfo pressedKey;
-    public static int guesses = 0;
-
+    public static int guesses = 1;
     public static void Main()
     {
         Init();
@@ -55,7 +54,7 @@ public class Hangman
     private static void Init()
     {
         guessedLetters = "";
-        guesses = 0;
+        guesses = 1;
         wrongWord = true;
         Console.Clear();
         Console.WriteLine("Welcome to Hangman!");
@@ -120,7 +119,7 @@ public class Hangman
 
     private static void Game()
     {
-        while (word != maskedWord)
+        while (word != maskedWord && guesses < 11 )
         {
             RefreshScreen();
             inputkey();
@@ -179,9 +178,18 @@ public class Hangman
 
     private static void RefreshScreen()
     {
+        if (Console.WindowHeight < 20 || Console.WindowWidth < 40)
+        {
+            Console.Clear();
+            Console.WriteLine("Please resize the window to at least 20 rows and 40 columns!");
+            while (Console.WindowHeight < 20 || Console.WindowWidth < 40)
+            {
+                
+            }
+        }
         Console.Clear();
         Console.WriteLine(maskedWord);
-        Console.WriteLine("Wrong guesses: " + guesses);
+        Console.WriteLine("Wrong guesses: " + (guesses-1));
         Console.WriteLine("Guessed letters: " + guessedLetters);
         if (alreadyGuessed)
         {
@@ -191,6 +199,15 @@ public class Hangman
         if (word == maskedWord)
         {
             Console.WriteLine("Congratulations! You guessed the word!");
+        }
+        if (guesses == 11)
+        {
+            GModule.DrawHangman(wrongGuesses: guesses-1);
+            Console.WriteLine("You lost! The word was: " + word);
+        }
+        else
+        {
+            GModule.DrawHangman(wrongGuesses: guesses-1);
         }
     }
 }
